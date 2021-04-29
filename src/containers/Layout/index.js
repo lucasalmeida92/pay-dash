@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import SearchInput from './SearchInput'
 
 const Wrapper = styled.div`
   display: grid;
   min-height: 100vh;
-  grid-template: 112px 1fr 32px / 112px 1fr 32px;
+  grid-template: 112px 1fr 32px / 112px 1fr 48px;
   grid-template-areas: "header header"
                        "sidenav content";
 `
@@ -21,8 +22,9 @@ const Logo = styled.div`
 
   h1 {
     margin: 0;
+    color: ${({ theme }) => theme.colors.dark};
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 800;
   }
 `
 const Search = styled.div`
@@ -30,6 +32,7 @@ const Search = styled.div`
   align-items: center;
   grid-area: search;
   justify-self: start;
+  padding-left: 16px;
 `
 const NavBar = styled.nav`
   display: grid;
@@ -55,7 +58,7 @@ function Layout({ children }) {
           <h1>Pay</h1>
         </Logo>
         <Search>
-          <span>Search</span>
+          <SearchInput />
         </Search>
         <NavBar>NavBar</NavBar>
       </Header>
