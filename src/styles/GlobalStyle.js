@@ -19,6 +19,15 @@ export default createGlobalStyle`
   font-family: 'Sen', sans-serif;
   }
 
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.dark};
+  }
+
+  ul, li {
+    list-style: none;
+  }
+
   input {
     border: none;
     height: 44px;

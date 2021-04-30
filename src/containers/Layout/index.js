@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import SearchInput from './SearchInput'
+import UserMenu from './UserMenu'
 
 const Wrapper = styled.div`
   display: grid;
@@ -25,6 +26,7 @@ const Logo = styled.div`
     color: ${({ theme }) => theme.colors.dark};
     font-size: 2.5rem;
     font-weight: 800;
+    transform: translateY(-4px);
   }
 `
 const Search = styled.div`
@@ -60,7 +62,9 @@ function Layout({ children }) {
         <Search>
           <SearchInput />
         </Search>
-        <NavBar>NavBar</NavBar>
+        <NavBar>
+          <UserMenu />
+        </NavBar>
       </Header>
       <Sidenav />
       <Content>
