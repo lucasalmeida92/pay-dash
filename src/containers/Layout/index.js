@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import SearchInput from './SearchInput'
 import UserMenu from './UserMenu'
+import NotificationsButton from '../../components/NotificationsButton'
 
 const Wrapper = styled.div`
   display: grid;
@@ -37,10 +38,10 @@ const Search = styled.div`
   padding-left: 16px;
 `
 const NavBar = styled.nav`
-  display: grid;
-  align-items: center;
   grid-area: navbar;
   justify-self: end;
+  display: flex;
+  align-items: center;
 `
 const Sidenav = styled.nav`
   grid-area: sidenav;
@@ -63,6 +64,7 @@ function Layout({ children }) {
           <SearchInput />
         </Search>
         <NavBar>
+          <NotificationsButton />
           <UserMenu />
         </NavBar>
       </Header>

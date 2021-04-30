@@ -5,23 +5,17 @@ const UserPicture = styled.img`
   cursor: pointer;
   width: 48px;
   height: 48px;
-  margin-left: 64px;
+  margin-left: 40px;
   border-radius: 48px;
   transition: all 200ms ease-out;
   object-fit: cover;
 
-  &:focus {
+  &:hover, &:focus {
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.grey};
   }
 `
 const Wrapper = styled.div`
   position: relative;
-
-  &:hover, &:focus {
-    ${UserPicture} {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.grey};
-    }
-  }
 `
 const DropdownMenu = styled.div`
   position: absolute;
