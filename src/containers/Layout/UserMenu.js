@@ -5,7 +5,7 @@ const UserPicture = styled.img`
   cursor: pointer;
   width: 48px;
   height: 48px;
-  margin-left: 40px;
+  margin-left: 24px;
   border-radius: 48px;
   transition: all 200ms ease-out;
   object-fit: cover;

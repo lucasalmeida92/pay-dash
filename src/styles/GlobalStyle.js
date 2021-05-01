@@ -39,4 +39,10 @@ export default createGlobalStyle`
       color: ${({ theme }) => theme.colors.lightGrey2};
     }
   }
+
+  button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
 `

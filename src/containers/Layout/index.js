@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import SearchInput from './SearchInput'
 import UserMenu from './UserMenu'
 import NotificationsButton from '../../components/NotificationsButton'
+import LanguagesMenu from './LanguagesMenu'
 
 const Wrapper = styled.div`
   display: grid;
@@ -64,7 +65,8 @@ function Layout({ children }) {
           <SearchInput />
         </Search>
         <NavBar>
-          <NotificationsButton />
+          <LanguagesMenu />
+          <NotificationsButton marginLeft="4px"/>
           <UserMenu />
         </NavBar>
       </Header>

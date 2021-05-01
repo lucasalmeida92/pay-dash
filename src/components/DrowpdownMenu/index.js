@@ -21,17 +21,20 @@ const Menu = styled.div`
       border-bottom: none;
     }
 
-    a {
+    a, button {
+      width: 100%;
       display: block;
       padding: 16px 48px 16px 28px;
       color: ${({ theme }) => theme.colors.lightGrey3};
       font-size: .8rem;
+      text-align: left;
       white-space: nowrap;
       transition: all 200ms ease-out;
 
       &:hover {
         background-color: rgba(255,255,255, .1);
         color: ${({ theme }) => theme.colors.lightGrey1};
+        font-weight: 700;
       }
     }
   }
@@ -45,6 +48,7 @@ function DropdownMenu({ openButton, children, onClickOpen }) {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setIsOpen(false)
+        onClickOpen && onClickOpen(false)
       }
     }
 
@@ -57,7 +61,7 @@ function DropdownMenu({ openButton, children, onClickOpen }) {
 
   function handleClickOpen() {
     setIsOpen(!isOpen)
-    onClickOpen && onClickOpen()
+    onClickOpen && onClickOpen(!isOpen)
   }
 
   return (

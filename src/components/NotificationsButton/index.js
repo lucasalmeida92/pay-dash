@@ -11,6 +11,7 @@ const Wrapper = styled.a`
   border-radius: 56px;
   width: 48px;
   height: 48px;
+  margin-left: ${({ marginLeft }) => marginLeft || 0};
 
   &:after {
     content: '';
@@ -32,7 +33,7 @@ const Wrapper = styled.a`
   }
 `
 
-function NotificationsButton() {
+function NotificationsButton({ marginLeft }) {
   const [hasNotifications, setHasNotifications] = useState(true)
 
   return (
@@ -40,6 +41,7 @@ function NotificationsButton() {
       href="#"
       title="Notifications"
       hasNotifications={hasNotifications}
+      marginLeft={marginLeft}
       onClick={() => setHasNotifications(!hasNotifications)}
     >
       <VscBell size="24" />
