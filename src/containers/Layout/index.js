@@ -8,6 +8,8 @@ import SideNav from './SideNav'
 const Wrapper = styled.div`
   display: grid;
   min-height: 100vh;
+  max-width: 1476px;
+  margin: 0 auto;
   grid-template: 112px 1fr 32px / auto 1fr 48px;
   grid-template-areas: "header header"
                        "sidenav content";

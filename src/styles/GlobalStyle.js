@@ -22,6 +22,7 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.dark};
+    outline: none;
   }
 
   ul, li {
@@ -46,5 +47,6 @@ export default createGlobalStyle`
     border: 0;
     background: none;
     cursor: pointer;
+    outline: none;
   }
 `
