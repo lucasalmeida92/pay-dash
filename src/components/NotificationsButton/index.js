@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { VscBell } from "react-icons/vsc"
+import { BsBell } from 'react-icons/bs'
 
 const Wrapper = styled.a`
   display: flex;
@@ -44,7 +44,7 @@ function NotificationsButton({ marginLeft }) {
       marginLeft={marginLeft}
       onClick={() => setHasNotifications(!hasNotifications)}
     >
-      <VscBell size="24" />
+      <BsBell size="24" />
     </Wrapper>
   )
 }

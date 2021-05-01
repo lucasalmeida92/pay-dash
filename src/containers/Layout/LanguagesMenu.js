@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import DropdownMenu from '../../components/DrowpdownMenu'
-import { RiArrowDownSLine } from "react-icons/ri"
+import { BsChevronDown } from "react-icons/bs"
 
 const OpenButton = styled.button`
   display: flex;
@@ -17,7 +17,7 @@ const OpenButton = styled.button`
     background-color: rgba(0,0,0,.07);
   }
 `
-const Icon = styled(RiArrowDownSLine)`
+const Icon = styled(BsChevronDown)`
   margin-left: 4px;
   transition: all 200ms ease-out;
   transform: rotate(${({ isOpen }) => isOpen ? '180deg' : 0});
@@ -47,7 +47,7 @@ function LanguagesMenu() {
       openButton={
         <OpenButton>
           <span>{currentLanguage}</span>
-          <Icon size="18" isOpen={isOpen} />
+          <Icon size="12" isOpen={isOpen} />
         </OpenButton>
       }
       onClickOpen={(openStatus) => setIsOpen(openStatus)}

@@ -3,11 +3,12 @@ import SearchInput from './SearchInput'
 import UserMenu from './UserMenu'
 import NotificationsButton from '../../components/NotificationsButton'
 import LanguagesMenu from './LanguagesMenu'
+import SideNav from './SideNav'
 
 const Wrapper = styled.div`
   display: grid;
   min-height: 100vh;
-  grid-template: 112px 1fr 32px / 112px 1fr 48px;
+  grid-template: 112px 1fr 32px / auto 1fr 48px;
   grid-template-areas: "header header"
                        "sidenav content";
 `
@@ -44,7 +45,7 @@ const NavBar = styled.nav`
   display: flex;
   align-items: center;
 `
-const Sidenav = styled.nav`
+const SidenavWrapper = styled.nav`
   grid-area: sidenav;
 `
 const Content = styled.main`
@@ -70,7 +71,9 @@ function Layout({ children }) {
           <UserMenu />
         </NavBar>
       </Header>
-      <Sidenav />
+      <SidenavWrapper>
+        <SideNav />
+      </SidenavWrapper>
       <Content>
         { children }
       </Content>

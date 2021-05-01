@@ -16,7 +16,7 @@ export default createGlobalStyle`
   }
 
   * {
-  font-family: 'Sen', sans-serif;
+    font-family: 'Sen', sans-serif;
   }
 
   a {
@@ -25,6 +25,8 @@ export default createGlobalStyle`
   }
 
   ul, li {
+    margin: 0;
+    padding: 0;
     list-style: none;
   }
 
