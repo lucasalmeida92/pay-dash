@@ -17,6 +17,7 @@ export default createGlobalStyle`
 
   * {
     font-family: 'Sen', sans-serif;
+    box-sizing: border-box;
   }
 
   a {
