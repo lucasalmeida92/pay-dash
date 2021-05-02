@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   z-index: 3;
   display: grid;
-  grid-template: 1fr 1fr 2fr / 1fr 1fr;
+  grid-template: 1fr 1.5fr 2fr / 1fr 1fr;
   grid-template-areas: "chip chip"
                        "number number"
                        "holder flag";
@@ -43,21 +43,22 @@ const Flag = styled.div`
   grid-area: flag;
   align-self: end;
   justify-self: end;
+  text-align: right;
 
   img {
-    opacity: 0.8;
+    width: 60px;
   }
 
   p {
     font-size: 0.6rem;
     font-weight: 700;
-    margin: 8px 0 0;
+    margin: 12px 8px 0 0;
   }
 `
 
-function CreditCard({ number, holder, flagName }) {
+function CreditCard({ className, number, holder, flagImage, flagName }) {
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Chip>
         <img src="/images/card-chip.png" alt="Card chip" />
       </Chip>
@@ -67,7 +68,7 @@ function CreditCard({ number, holder, flagName }) {
         <p>{ holder }</p>
       </Holder>
       <Flag>
-        <img src="/images/mastercard-logo.webp" alt="Mastercard Logo" width="60px" />
+        <img src={flagImage} alt={flagName} />
         <p>{ flagName }</p>
       </Flag>
     </Wrapper>

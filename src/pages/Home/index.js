@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import CardWidget from './components/CardWidget'
 
 const PageTitle = styled.h1`
-  font-size: 1.2rem;
+  margin: 0 0 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: black;
 `
 const WidgetsWrapper = styled.div`
