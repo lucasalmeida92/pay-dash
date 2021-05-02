@@ -10,10 +10,24 @@ const PageTitle = styled.h1`
 `
 const WidgetsWrapper = styled.div`
   display: grid;
-  grid-template: 260px auto / 1fr 1.2fr 1.3fr;
+  grid-template: 260px auto / 1fr 1.1fr 1.3fr;
   grid-template-areas: "card upcomingPayments chart"
                        "recentTransactions recentTransactions chart";
   grid-gap: 32px;
+
+  @media(max-width: 1280px) {
+    grid-template: 260px auto auto / 1fr 1fr;
+    grid-template-areas: "card upcomingPayments"
+                         "recentTransactions recentTransactions"
+                         "chart chart";
+  }
+  @media(max-width: 920px) {
+    grid-template: 260px 260px auto auto / 1fr;
+    grid-template-areas: "card"
+                         "upcomingPayments"
+                         "recentTransactions"
+                         "chart";
+  }
 `
 const CreditCard = styled.section`
   grid-area: card;
@@ -24,11 +38,12 @@ const UpcomingPayments = styled.section`
 const RecentTransactions = styled.section`
   grid-area: recentTransactions;
   background: rgba(0,0,0,.05);
+  min-height: 400px;
 `
 const Chart = styled.section`
   grid-area: chart;
   background: rgba(0,0,0,.05);
-  height: 600px;
+  min-height: 600px;
 `
 
 function HomePage() {

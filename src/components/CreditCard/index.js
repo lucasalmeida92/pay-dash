@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   min-width: 250px;
+  max-width: 360px;
   padding: 24px;
   background: linear-gradient(45deg, #363435 10%, 20%, #222 90%);
   border-radius: 32px;

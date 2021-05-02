@@ -17,6 +17,11 @@ const CustomCreditCard = styled(CreditCard)`
   &:first-child {
     z-index: 3;
     opacity: 1;
+
+    &:hover {
+      transform: scale(1.01) rotate(2deg) translateY(-5px) translateX(-2px);
+      box-shadow: 3px 6px 10px 0 rgba(0,0,0,.2);
+    }
   }
 
   &:nth-child(2) {
@@ -28,10 +33,6 @@ const CustomCreditCard = styled(CreditCard)`
     z-index: 1;
     top: 50px;
     transform: scale(0.67);
-  }
-  &:hover {
-    transform: scale(1.01) rotate(2deg) translateY(-5px) translateX(-2px);
-    box-shadow: 3px 6px 10px 0 rgba(0,0,0,.2);
   }
 `
 
