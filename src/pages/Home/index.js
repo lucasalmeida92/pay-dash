@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import CardWidget from './components/CardWidget'
 import UpcomingPaymentsWidget from './components/UpcomingPaymentsWidget'
+import RecentTransactionsWidget from './components/RecentTransactionsWidget'
 
 const PageTitle = styled.h1`
   margin: 0 0 40px;
@@ -13,7 +14,7 @@ const WidgetsWrapper = styled.div`
   grid-template: 260px auto / 1fr 1.1fr 1.3fr;
   grid-template-areas: "card upcomingPayments chart"
                        "recentTransactions recentTransactions chart";
-  grid-gap: 32px;
+  grid-gap: 48px 32px;
 
   @media(max-width: 1280px) {
     grid-template: 260px auto auto / 1fr 1fr;
@@ -37,7 +38,6 @@ const UpcomingPayments = styled.section`
 `
 const RecentTransactions = styled.section`
   grid-area: recentTransactions;
-  background: rgba(0,0,0,.05);
   min-height: 400px;
 `
 const Chart = styled.section`
@@ -57,7 +57,9 @@ function HomePage() {
         <UpcomingPayments>
           <UpcomingPaymentsWidget />
         </UpcomingPayments>
-        <RecentTransactions>RecentTransactions</RecentTransactions>
+        <RecentTransactions>
+          <RecentTransactionsWidget />
+        </RecentTransactions>
         <Chart>Chart</Chart>
       </WidgetsWrapper>
     </>
