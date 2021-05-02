@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import CardWidget from './components/CardWidget'
+import UpcomingPaymentsWidget from './components/UpcomingPaymentsWidget'
 
 const PageTitle = styled.h1`
   margin: 0 0 40px;
@@ -9,7 +10,7 @@ const PageTitle = styled.h1`
 `
 const WidgetsWrapper = styled.div`
   display: grid;
-  grid-template: 200px auto / 1fr 1.2fr 1.3fr;
+  grid-template: 260px auto / 1fr 1.2fr 1.3fr;
   grid-template-areas: "card upcomingPayments chart"
                        "recentTransactions recentTransactions chart";
   grid-gap: 32px;
@@ -19,7 +20,6 @@ const CreditCard = styled.section`
 `
 const UpcomingPayments = styled.section`
   grid-area: upcomingPayments;
-  background: rgba(0,0,0,.05);
 `
 const RecentTransactions = styled.section`
   grid-area: recentTransactions;
@@ -28,6 +28,7 @@ const RecentTransactions = styled.section`
 const Chart = styled.section`
   grid-area: chart;
   background: rgba(0,0,0,.05);
+  height: 600px;
 `
 
 function HomePage() {
@@ -38,7 +39,9 @@ function HomePage() {
         <CreditCard>
           <CardWidget></CardWidget>
         </CreditCard>
-        <UpcomingPayments>UpcomingPayments</UpcomingPayments>
+        <UpcomingPayments>
+          <UpcomingPaymentsWidget />
+        </UpcomingPayments>
         <RecentTransactions>RecentTransactions</RecentTransactions>
         <Chart>Chart</Chart>
       </WidgetsWrapper>

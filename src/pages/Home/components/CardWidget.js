@@ -4,7 +4,7 @@ import CreditCard from '../../../components/CreditCard'
 
 const Wrapper = styled.div`
   position: relative;
-  height: 100%;
+  height: 200px;
   cursor: pointer;
 `
 const CustomCreditCard = styled(CreditCard)`
@@ -12,7 +12,7 @@ const CustomCreditCard = styled(CreditCard)`
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.2;
+  opacity: 0.15;
 
   &:first-child {
     z-index: 3;
@@ -26,8 +26,12 @@ const CustomCreditCard = styled(CreditCard)`
   }
   &:nth-child(3) {
     z-index: 1;
-    top: 52px;
+    top: 50px;
     transform: scale(0.67);
+  }
+  &:hover {
+    transform: scale(1.01) rotate(2deg) translateY(-5px) translateX(-2px);
+    box-shadow: 3px 6px 10px 0 rgba(0,0,0,.2);
   }
 `
 
@@ -50,6 +54,12 @@ const cardsArray = [
     flagImage: '/images/mastercard-logo.webp',
     flagName: 'Mastercard',
   },
+  {
+    number: '9988 0091 1178 7722',
+    holder: 'Bruce Wayne',
+    flagImage: '/images/visa-logo.png',
+    flagName: 'Visa',
+  },
 ]
 
 function CardWidget() {
@@ -63,17 +73,20 @@ function CardWidget() {
   }
 
   return (
-    <Wrapper onClick={rotateCards}>
-      {cards.map(card => (
-        <CustomCreditCard
-          key={card.number}
-          number={card.number}
-          holder={card.holder}
-          flagImage={card.flagImage}
-          flagName={card.flagName}
-        />
-      ))}
-    </Wrapper>
+    <>
+      <h1>My Cards</h1>
+      <Wrapper onClick={rotateCards}>
+        {cards.map(card => (
+          <CustomCreditCard
+            key={card.number}
+            number={card.number}
+            holder={card.holder}
+            flagImage={card.flagImage}
+            flagName={card.flagName}
+          />
+        ))}
+      </Wrapper>
+    </>
   )
 }
 

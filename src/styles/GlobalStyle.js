@@ -20,6 +20,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  h1 {
+    margin: 0 0 32px;
+  }
+
   a {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.dark};
