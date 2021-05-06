@@ -5,10 +5,11 @@ const Wrapper = styled.div`
   position: relative;
 `
 const Menu = styled.div`
+  z-index: 999;
   position: absolute;
   overflow: hidden;
-  top: calc(100% + 16px);
-  right: 0;
+  top: ${({ top }) => top || 'calc(100% + 16px)'};
+  right: ${({ right }) => right || 0};
   display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
   border-radius: 24px;
   padding: 2px;
@@ -33,14 +34,13 @@ const Menu = styled.div`
 
       &:hover {
         background-color: rgba(255,255,255, .1);
-        color: ${({ theme }) => theme.colors.lightGrey1};
-        font-weight: 700;
+        color: white;
       }
     }
   }
 `
 
-function DropdownMenu({ openButton, children, onClickOpen }) {
+function DropdownMenu({ className, openButton, children, onClickOpen, top, right }) {
   const [isOpen, setIsOpen] = useState(false)
   const wrapperRef = useRef(null)
 
@@ -65,12 +65,12 @@ function DropdownMenu({ openButton, children, onClickOpen }) {
   }
 
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper ref={wrapperRef} className={className}>
       <span onClick={handleClickOpen}>
         {openButton}
       </span>
 
-      <Menu isOpen={isOpen}>
+      <Menu isOpen={isOpen} top={top} right={right}>
         { children }
       </Menu>
     </Wrapper>

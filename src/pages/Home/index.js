@@ -22,8 +22,8 @@ const WidgetsWrapper = styled.div`
                          "recentTransactions recentTransactions"
                          "chart chart";
   }
-  @media(max-width: 920px) {
-    grid-template: 260px 260px auto auto / 1fr;
+  @media(max-width: 720px) {
+    grid-template: 260px 260px auto auto / 100%;
     grid-template-areas: "card"
                          "upcomingPayments"
                          "recentTransactions"

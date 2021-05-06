@@ -14,9 +14,11 @@ const Wrapper = styled.div`
   grid-template-areas: "header header"
                        "sidenav content";
   @media(max-width: 920px) {
-    grid-template: 80px auto / 1fr;
+    width: 100vw;
+    grid-template: 80px auto / 100vw;
     grid-template-areas: "header"
                          "content";
+    overflow-x: hidden;
   }
 `
 const Header = styled.header`
