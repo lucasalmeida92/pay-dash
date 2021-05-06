@@ -29,7 +29,7 @@ const TableStyles = styled.div`
     th,
     td {
       margin: 0;
-      padding: 0.5rem;
+      padding: 8px;
       border-bottom: 1px solid #d9d9d9;
 
       :last-child {

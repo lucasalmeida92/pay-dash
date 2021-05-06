@@ -1,7 +1,8 @@
 import  { useState } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
-import { BsGift, BsThreeDotsVertical } from 'react-icons/bs'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import { BiGift, BiRun, BiCloset, BiBasket, BiCar } from 'react-icons/bi'
 import Table from '../../../components/Table'
 import DropdownMenu from '../../../components/DrowpdownMenu'
 
@@ -53,6 +54,9 @@ const OptionsDropdownMenu = styled(DropdownMenu)`
   text-align: right;
 `
 const OptionsButton = styled.button`
+  width: 36px;
+  height: 36px;
+  line-height: 41px;
   font-size: 24px;
   color: ${({ theme }) => theme.colors.lightGrey3 };
 
@@ -62,11 +66,11 @@ const OptionsButton = styled.button`
 `
 
 const categoriesIcons = {
-  shopping: BsGift,
-  grocery: BsGift,
-  physicalActivity: BsGift,
-  laundry: BsGift,
-  car: BsGift,
+  shopping: BiGift,
+  grocery: BiBasket,
+  physicalActivity: BiRun,
+  laundry: BiCloset,
+  car: BiCar,
 }
 
 const columns = [
@@ -74,7 +78,7 @@ const columns = [
     Header: 'CategoryIcon',
     accessor: data => {
       const Icon = categoriesIcons[data.category]
-      return <BsGift className="category-icon" />
+      return Icon && <Icon className="category-icon" />
     },
   },
   {
@@ -85,16 +89,16 @@ const columns = [
     Header: 'DateTime',
     accessor: ({ createdAt }) =>
       <TransactionDate>
-        {format(new Date(createdAt), 'dd MMM yyyy HH:mm')}
+        {createdAt && format(new Date(createdAt), 'dd MMM yyyy HH:mm')}
       </TransactionDate>,
   },
   {
     Header: 'Price',
-    accessor: ({ price }) => <TransactionPrice>${price}</TransactionPrice>,
+    accessor: ({ price }) => <TransactionPrice>${price || '-'}</TransactionPrice>,
   },
   {
     Header: 'OptionsMenu',
-    accessor: ({ id }) => (
+    accessor: ({ id, title }) => (
       <OptionsDropdownMenu
         openButton={
           <OptionsButton>
@@ -104,9 +108,9 @@ const columns = [
         top="0"
         right="42px"
       >
-        <li><button onClick={() => alert(id)}>Apple pay</button></li>
-        <li><button onClick={() => alert(id)}>Transfer to account</button></li>
-        <li><button onClick={() => alert(id)}>Report for transaction</button></li>
+        <li><button onClick={() => alert(`${id} - ${title}`)}>Apple pay</button></li>
+        <li><button onClick={() => alert(`${id} - ${title}`)}>Transfer to account</button></li>
+        <li><button onClick={() => alert(`${id} - ${title}`)}>Report for transaction</button></li>
       </OptionsDropdownMenu>
     ),
   },
@@ -144,7 +148,7 @@ const recentTransactions = [
   {
     id: 5,
     title: 'Car Repair',
-    type: 'car',
+    category: 'car',
     createdAt: 'Wed May 02 2021 20:57:33 GMT-0300',
     price: '250',
   },
