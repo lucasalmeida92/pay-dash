@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import CardWidget from './components/CardWidget'
+import MyCardsWidget from './components/MyCardsWidget'
 import UpcomingPaymentsWidget from './components/UpcomingPaymentsWidget'
 import RecentTransactionsWidget from './components/RecentTransactionsWidget'
 import ChartWidget from './components/ChartWidget'
@@ -42,6 +42,11 @@ const RecentTransactions = styled.section`
 `
 const Chart = styled.section`
   grid-area: chart;
+  margin-top: -68px;
+
+  @media(max-width: 1280px) {
+    margin-top: 0;
+  }
 `
 
 function HomePage() {
@@ -50,7 +55,7 @@ function HomePage() {
       <PageTitle>Dashboard</PageTitle>
       <WidgetsWrapper>
         <CreditCard>
-          <CardWidget></CardWidget>
+          <MyCardsWidget />
         </CreditCard>
         <UpcomingPayments>
           <UpcomingPaymentsWidget />

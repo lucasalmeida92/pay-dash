@@ -63,7 +63,7 @@ const cardsArray = [
   },
 ]
 
-function CardWidget() {
+function MyCardsWidget() {
   const [cards, setCards] = useState(cardsArray)
 
   function rotateCards() {
@@ -91,4 +91,4 @@ function CardWidget() {
   )
 }
 
-export default CardWidget
+export default MyCardsWidget
