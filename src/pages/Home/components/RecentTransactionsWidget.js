@@ -1,11 +1,114 @@
-import  { useState } from 'react'
+import  { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import ReactTooltip from 'react-tooltip'
+import { BsThreeDotsVertical, BsChevronDown, BsArrowDown } from 'react-icons/bs'
 import { BiGift, BiRun, BiCloset, BiBasket, BiCar } from 'react-icons/bi'
 import Table from '../../../components/Table'
 import DropdownMenu from '../../../components/DrowpdownMenu'
+import { getRecentTransactions } from '../../../services/transactions'
 
+const SectionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    flex: 1;
+    margin: 0;
+  }
+`
+const SelectArrow = styled(BsChevronDown)`
+  grid-area: select;
+  justify-self: end;
+  font-size: 14px;
+  margin-right: 11px;
+`
+const SelectWrapper = styled.label`
+  flex: 0;
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  width: 100%;
+  min-width: 140px;
+  height: fit-content;
+  border: 1px solid #e0e5ee;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+
+  select {
+    z-index: 2;
+    grid-area: select;
+    // A reset of styles, including removing the default dropdown arrow
+    appearance: none;
+    // Additional resets for further consistency
+    background-color: transparent;
+    border: none;
+    padding: 8px 24px 8px 16px;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    color: ${({ theme }) => theme.colors.lightGrey2 };
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+
+  }
+
+  &:hover  {
+    select {
+      color: ${({ theme }) => theme.colors.grey };
+    }
+  }
+
+  &:focus-within  {
+    border-color: ${({ theme }) => theme.colors.lightGrey2 };
+
+    select {
+      color: ${({ theme }) => theme.colors.grey };
+    }
+  }
+
+`
+const OrderButton = styled.button`
+  flex: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 4px;
+  transition: all 200ms ease-out;
+
+  &:before {
+    content: ${({isAscSorting}) => isAscSorting ? `'A'` : `'Z'`};
+    position: absolute;
+    top: calc(50% - 16px);
+    right: 0;
+    color: ${({ theme }) => theme.colors.lightGrey2 };
+    transition: all 150ms ease-out;
+  }
+  &:after {
+    content: ${({isAscSorting}) => isAscSorting ? `'Z'` : `'A'`};
+    position: absolute;
+    bottom: calc(50% - 15px);
+    right: 0;
+    color: ${({ theme }) => theme.colors.lightGrey2 };
+    transition: all 150ms ease-out;
+  }
+
+  &:hover {
+    &:before, &:after {
+      color: ${({ theme }) => theme.colors.grey };
+    }
+  }
+  &:active {
+    transform: scale(0.9);
+    transition-duration: 0ms;
+  }
+`
 const TableWrapper = styled.div`
   position: relative;
 
@@ -116,50 +219,63 @@ const columns = [
   },
 ]
 
-const recentTransactions = [
-  {
-    id: 1,
-    title: 'Shopping',
-    category: 'shopping',
-    createdAt: 'Wed May 05 2021 20:57:33 GMT-0300',
-    price: '300',
-  },
-  {
-    id: 2,
-    title: 'Grocery',
-    category: 'grocery',
-    createdAt: 'Wed May 05 2021 14:57:33 GMT-0300',
-    price: '45',
-  },
-  {
-    id: 3,
-    title: 'Gym',
-    category: 'physicalActivity',
-    createdAt: 'Wed May 04 2021 20:57:33 GMT-0300',
-    price: '125',
-  },
-  {
-    id: 4,
-    title: 'Laundry',
-    category: 'laundry',
-    createdAt: 'Wed May 04 2021 20:57:33 GMT-0300',
-    price: '90',
-  },
-  {
-    id: 5,
-    title: 'Car Repair',
-    category: 'car',
-    createdAt: 'Wed May 02 2021 20:57:33 GMT-0300',
-    price: '250',
-  },
-]
-
 function RecentTransactionsWidget() {
-  const [transactionsData, setTransactionsData] = useState(recentTransactions)
+  const [transactionsData, setTransactionsData] = useState([])
+  const [isAscSorting, setIsAscSorting] = useState(false)
+  const [sortFilter, setSortFilter] = useState('')
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
+
+  useEffect(() => {
+    setTransactionsData(getRecentTransactions())
+  }, [])
+
+  useEffect(() => {
+    transactionsData.length && sortTransactions()
+  }, [sortFilter, isAscSorting])
+
+  function sortTransactions() {
+    const dataCopy = [...transactionsData]
+    const filters = {
+      '': (a, b) => new Date(a['createdAt']) - new Date(b['createdAt']),
+      title: (a, b) => a['title'] > b['title'] ? 1 : -1,
+      createdAt:
+      (a, b) => new Date(a['createdAt']) - new Date(b['createdAt']),
+      price: (a, b) => a['price'] > b['price'] ? 1 : -1,
+    }
+
+    setTransactionsData(
+      dataCopy.sort(
+        (a, b) => filters[sortFilter](a, b, sortFilter) * (isAscSorting ? 1 : -1)
+      )
+    )
+  }
 
   return (
     <>
-      <h1>Recent Transactions</h1>
+      <SectionHeader>
+        <h1>Recent Transactions</h1>
+        <SelectWrapper>
+          <select defaultValue={sortFilter} onChange={(e) => setSortFilter(e.target.value)}>
+            <option value="" disabled>Sort by</option>
+            <option value="title">Title</option>
+            <option value="createdAt">Date</option>
+            <option value="price">Price</option>
+          </select>
+          <SelectArrow />
+        </SelectWrapper>
+        <OrderButton
+          onClick={() => setIsAscSorting(!isAscSorting)}
+          isAscSorting={isAscSorting}
+          key={isAscSorting ? 'asc' : 'desc'}
+          data-tip={isAscSorting ? 'Change to Descending' : 'Change to Ascending'}
+        >
+          <BsArrowDown size="28px" />
+        </OrderButton>
+        <ReactTooltip />
+      </SectionHeader>
       <TableWrapper>
         <Table columns={columns} data={transactionsData} noHeader minWidth="420px" />
       </TableWrapper>
