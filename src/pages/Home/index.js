@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import CardWidget from './components/CardWidget'
 import UpcomingPaymentsWidget from './components/UpcomingPaymentsWidget'
 import RecentTransactionsWidget from './components/RecentTransactionsWidget'
+import ChartWidget from './components/ChartWidget'
 
 const PageTitle = styled.h1`
   margin: 0 0 40px;
@@ -38,12 +39,9 @@ const UpcomingPayments = styled.section`
 `
 const RecentTransactions = styled.section`
   grid-area: recentTransactions;
-  min-height: 400px;
 `
 const Chart = styled.section`
   grid-area: chart;
-  background: rgba(0,0,0,.05);
-  min-height: 600px;
 `
 
 function HomePage() {
@@ -60,7 +58,9 @@ function HomePage() {
         <RecentTransactions>
           <RecentTransactionsWidget />
         </RecentTransactions>
-        <Chart>Chart</Chart>
+        <Chart>
+          <ChartWidget />
+        </Chart>
       </WidgetsWrapper>
     </>
   )
